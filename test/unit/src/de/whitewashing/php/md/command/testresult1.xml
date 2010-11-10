@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pmd version="0.2.7" timestamp="2010-11-10T20:33:08+01:00">
+  <file name="/DocumentController.php">
+    <violation beginline="20" endline="564" rule="ExcessivePublicCount" ruleset="Code Size Rules" package="Cadmium\Documents" externalInfoUrl="http://phpmd.org/rules/codesize.html#excessivepubliccount" class="Documents_DocumentController" priority="3">
+      This class has a bunch of public methods and attributes
+    </violation>
+    <violation beginline="20" endline="564" rule="TooManyMethods" ruleset="Code Size Rules" package="Cadmium\Documents" externalInfoUrl="http://phpmd.org/rules/codesize.html#toomanymethods" class="Documents_DocumentController" priority="3">
+      This class has too many methods, consider refactoring it.
+    </violation>
+    <violation beginline="20" endline="564" rule="ExcessiveClassComplexity" ruleset="Code Size Rules" package="Cadmium\Documents" externalInfoUrl="http://phpmd.org/rules/codesize.html#excessiveclasscomplexity" class="Documents_DocumentController" priority="3">
+      This class Documents_DocumentController has an overall complexity of 91 which is very high. The configured complexity threshold is 50.
+    </violation>
+    <violation beginline="103" endline="193" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="Cadmium\Documents" externalInfoUrl="http://phpmd.org/rules/codesize.html#cyclomaticcomplexity" class="Documents_DocumentController" method="editAction" priority="3">
+      The method editAction() has a Cyclomatic Complexity of 19.
+    </violation>
+    <violation beginline="103" endline="193" rule="NPathComplexity" ruleset="Code Size Rules" package="Cadmium\Documents" externalInfoUrl="http://phpmd.org/rules/codesize.html#npathcomplexity" class="Documents_DocumentController" method="editAction" priority="3">
+      The method editAction() has an NPath complexity of 11600.
+    </violation>
+    <violation beginline="227" endline="289" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="Cadmium\Documents" externalInfoUrl="http://phpmd.org/rules/codesize.html#cyclomaticcomplexity" class="Documents_DocumentController" method="createAction" priority="3">
+      The method createAction() has a Cyclomatic Complexity of 15.
+    </violation>
+    <violation beginline="227" endline="289" rule="NPathComplexity" ruleset="Code Size Rules" package="Cadmium\Documents" externalInfoUrl="http://phpmd.org/rules/codesize.html#npathcomplexity" class="Documents_DocumentController" method="createAction" priority="3">
+      The method createAction() has an NPath complexity of 770.
+    </violation>
+    <violation beginline="376" endline="473" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="Cadmium\Documents" externalInfoUrl="http://phpmd.org/rules/codesize.html#cyclomaticcomplexity" class="Documents_DocumentController" method="replyAction" priority="3">
+      The method replyAction() has a Cyclomatic Complexity of 21.
+    </violation>
+    <violation beginline="376" endline="473" rule="NPathComplexity" ruleset="Code Size Rules" package="Cadmium\Documents" externalInfoUrl="http://phpmd.org/rules/codesize.html#npathcomplexity" class="Documents_DocumentController" method="replyAction" priority="3">
+      The method replyAction() has an NPath complexity of 20736.
+    </violation>
+  </file>
+</pmd>
