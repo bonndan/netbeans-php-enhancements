@@ -4,6 +4,7 @@
  */
 package de.whitewashing.php.md.command;
 
+import de.whitewashing.php.md.ui.options.MessDetectorOptions;
 import java.util.concurrent.ExecutionException;
 import java.io.File;
 import java.io.IOException;
@@ -59,17 +60,9 @@ public class MessDetector
         return this.shellScript != null && new File(this.shellScript).exists();
     }
 
-    public List<String> getAvailableStandards()
+    public String getAvailableRulesets()
     {
-        if (this.isEnabled() == false) {
-            return new ArrayList<String>();
-        }
-
-        ExternalProcessBuilder procBuilder = new ExternalProcessBuilder(this.shellScript).addArgument("-i");
-
-        ProcessExecutor executor = new ProcessExecutor();
-        StupidStandardsOutputParser parser = new StupidStandardsOutputParser();
-        return parser.parse(executor.execute(procBuilder));
+        return MessDetectorOptions.DEFAULT_RULESETS;
     }
 
     public MessDetectorXmlLogResult execute(FileObject fo)

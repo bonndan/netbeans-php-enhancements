@@ -30,6 +30,6 @@ public class MessDetectorBuilder
     {
         MessDetectorOptions options = new MessDetectorOptions();
 
-        return (messDetector = new MessDetector(options.getShellScript(), options.getCodingStandard()));
+        return (messDetector = new MessDetector(options.getShellScript(), options.getRulesets()));
     }
 }

@@ -13,64 +13,77 @@ import org.netbeans.spi.options.OptionsPanelController;
 import org.openide.util.HelpCtx;
 import org.openide.util.Lookup;
 
-public final class MessDetectorOptionsPanelController extends OptionsPanelController {
+@OptionsPanelController.SubRegistration(location = "Advanced",
+                                        displayName = "#AdvancedOption_DisplayName_MessDetector",
+                                        keywords = "#AdvancedOption_Keywords_MessDetector",
+                                        keywordsCategory = "Advanced/MessDetector")
+public final class MessDetectorOptionsPanelController extends OptionsPanelController
+{
 
     private MessDetectorOptionsPanel panel;
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
     private boolean changed;
 
-    public void update() {
+    public void update()
+    {
         getPanel().load();
         changed = false;
     }
 
-    public void applyChanges() {
+    public void applyChanges()
+    {
         getPanel().store();
         changed = false;
-
-        // Reset currently used MessDetector instance
-        MessDetectorBuilder.create();
     }
 
-    public void cancel() {
+    public void cancel()
+    {
         // need not do anything special, if no changes have been persisted yet
     }
 
-    public boolean isValid() {
+    public boolean isValid()
+    {
         return getPanel().valid();
     }
 
-    public boolean isChanged() {
+    public boolean isChanged()
+    {
         return changed;
     }
 
-    public HelpCtx getHelpCtx() {
+    public HelpCtx getHelpCtx()
+    {
         return null; // new HelpCtx("...ID") if you have a help set
     }
 
-    public JComponent getComponent(Lookup masterLookup) {
+    public JComponent getComponent(Lookup masterLookup)
+    {
         return getPanel();
     }
 
-    public void addPropertyChangeListener(PropertyChangeListener l) {
+    public void addPropertyChangeListener(PropertyChangeListener l)
+    {
         pcs.addPropertyChangeListener(l);
     }
 
-    public void removePropertyChangeListener(PropertyChangeListener l) {
+    public void removePropertyChangeListener(PropertyChangeListener l)
+    {
         pcs.removePropertyChangeListener(l);
     }
 
-    private MessDetectorOptionsPanel getPanel() {
+    private MessDetectorOptionsPanel getPanel()
+    {
         if (panel == null) {
             MessDetector command = MessDetectorBuilder.createOrReturn();
-            MessDetectorOptions options = new MessDetectorOptions(command.getAvailableStandards());
-            
+            MessDetectorOptions options = new MessDetectorOptions(command.getAvailableRulesets());
+
             panel = new MessDetectorOptionsPanel(options);
         }
         return panel;
     }
 
-    void changed() {
+    void changed()
+    {
         if (!changed) {
             changed = true;
             pcs.firePropertyChange(OptionsPanelController.PROP_CHANGED, false, true);

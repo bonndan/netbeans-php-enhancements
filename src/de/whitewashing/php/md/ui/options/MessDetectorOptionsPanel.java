@@ -4,7 +4,7 @@
  */
 
 /*
- * CodeSnifferPanel2.java
+ * MessDetectorPanel2.java
  *
  * Created on Nov 17, 2009, 1:45:25 PM
  */
@@ -19,18 +19,18 @@ import org.openide.util.NbBundle;
  *
  * @author petr
  */
-public class MessDetectorOptionsPanel extends javax.swing.JPanel {
+public class MessDetectorOptionsPanel extends javax.swing.JPanel
+{
 
     /**
-     * Suffix used for the last selected codesniffer directory.
+     * Suffix used for the last selected md directory.
      */
-    private static final String CODE_SNIFFER_LAST_FOLDER_SUFFIX = ".codeSniffer";
-
+    private static final String MESS_DETECTOR_LAST_FOLDER_SUFFIX = ".messDetector";
     private MessDetectorOptions options = null;
 
-    public MessDetectorOptionsPanel(MessDetectorOptions options) {
+    public MessDetectorOptionsPanel(MessDetectorOptions options)
+    {
         this.options = options;
-        
         initComponents();
     }
 
@@ -44,31 +44,29 @@ public class MessDetectorOptionsPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         labelStandard = new javax.swing.JLabel();
-        inputBoxStandard = new javax.swing.JComboBox();
-        checkBoxShowWarnings = new javax.swing.JCheckBox();
-        codeSnifferLabel = new javax.swing.JLabel();
-        codeSnifferTextField = new javax.swing.JTextField();
+        messDetectorLabel = new javax.swing.JLabel();
+        rulesetsTextField = new javax.swing.JTextField();
         browseButton = new javax.swing.JButton();
+        messDetectorTextField = new javax.swing.JTextField();
 
         setNextFocusableComponent(this);
         setPreferredSize(new java.awt.Dimension(612, 322));
 
         labelStandard.setText(org.openide.util.NbBundle.getMessage(MessDetectorOptionsPanel.class, "LBL_STANDARD")); // NOI18N
 
-        inputBoxStandard.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Zend", "PEAR", "PHPCS", "Squiz", "MySource" }));
+        messDetectorLabel.setText(org.openide.util.NbBundle.getMessage(MessDetectorOptionsPanel.class, "MessDetectorOptionsPanel.messDetectorLabel.text")); // NOI18N
 
-        checkBoxShowWarnings.setText(org.openide.util.NbBundle.getMessage(MessDetectorOptionsPanel.class, "LBL_SHOW_WORNINGS")); // NOI18N
+        rulesetsTextField.setText(org.openide.util.NbBundle.getMessage(MessDetectorOptionsPanel.class, "MessDetectorOptionsPanel.messDetectorTextField.text")); // NOI18N
 
-        codeSnifferLabel.setText(org.openide.util.NbBundle.getMessage(MessDetectorOptionsPanel.class, "CodeSnifferOptionsPanel.codeSnifferLabel.text")); // NOI18N
-
-        codeSnifferTextField.setText(org.openide.util.NbBundle.getMessage(MessDetectorOptionsPanel.class, "CodeSnifferOptionsPanel.codeSnifferTextField.text")); // NOI18N
-
-        browseButton.setText(org.openide.util.NbBundle.getMessage(MessDetectorOptionsPanel.class, "CodeSnifferOptionsPanel.browseButton.text")); // NOI18N
+        browseButton.setText(org.openide.util.NbBundle.getMessage(MessDetectorOptionsPanel.class, "MessDetectorOptionsPanel.browseButton.text")); // NOI18N
         browseButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 browseButtonActionPerformed(evt);
             }
         });
+
+        messDetectorTextField.setText(org.openide.util.NbBundle.getMessage(MessDetectorOptionsPanel.class, "MessDetectorOptionsPanel.messDetectorTextField.text")); // NOI18N
+        messDetectorTextField.setName("messDetectorTextField"); // NOI18N
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
@@ -77,17 +75,15 @@ public class MessDetectorOptionsPanel extends javax.swing.JPanel {
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(codeSnifferLabel)
+                    .add(messDetectorLabel)
                     .add(labelStandard))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(checkBoxShowWarnings, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)
                     .add(layout.createSequentialGroup()
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                            .add(org.jdesktop.layout.GroupLayout.LEADING, inputBoxStandard, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .add(org.jdesktop.layout.GroupLayout.LEADING, codeSnifferTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 365, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(messDetectorTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 365, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(browseButton)))
+                        .add(browseButton))
+                    .add(rulesetsTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 365, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -95,64 +91,50 @@ public class MessDetectorOptionsPanel extends javax.swing.JPanel {
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(codeSnifferLabel)
-                    .add(codeSnifferTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(browseButton))
+                    .add(messDetectorLabel)
+                    .add(browseButton)
+                    .add(messDetectorTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(inputBoxStandard, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(labelStandard))
-                .add(18, 18, 18)
-                .add(checkBoxShowWarnings)
-                .addContainerGap(208, Short.MAX_VALUE))
+                    .add(labelStandard)
+                    .add(rulesetsTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(234, Short.MAX_VALUE))
         );
 
-        getAccessibleContext().setAccessibleDescription(org.openide.util.NbBundle.getMessage(MessDetectorOptionsPanel.class, "CodeSnifferPanel.AccessibleContext.accessibleDescription")); // NOI18N
+        getAccessibleContext().setAccessibleDescription(org.openide.util.NbBundle.getMessage(MessDetectorOptionsPanel.class, "MessDetectorOptionsPanel.AccessibleContext.accessibleDescription")); // NOI18N
     }// </editor-fold>//GEN-END:initComponents
 
     private void browseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseButtonActionPerformed
-        File codeSnifferScript = new FileChooserBuilder(MessDetectorOptionsPanel.class.getName() + CODE_SNIFFER_LAST_FOLDER_SUFFIX)
-                .setTitle(NbBundle.getMessage(MessDetectorOptionsPanel.class, "LBL_CodeSnifferSelect"))
-                .setFilesOnly(true)
-                .showOpenDialog();
-        if (codeSnifferScript != null) {
-            codeSnifferScript = FileUtil.normalizeFile(codeSnifferScript);
-            codeSnifferTextField.setText(codeSnifferScript.getAbsolutePath());
+        File messDetectorScript = new FileChooserBuilder(MessDetectorOptionsPanel.class.getName() + MESS_DETECTOR_LAST_FOLDER_SUFFIX).setTitle(NbBundle.getMessage(MessDetectorOptionsPanel.class, "LBL_CodeSnifferSelect")).setFilesOnly(true).showOpenDialog();
+        if (messDetectorScript != null) {
+            messDetectorScript = FileUtil.normalizeFile(messDetectorScript);
+            messDetectorTextField.setText(messDetectorScript.getAbsolutePath());
         }
     }//GEN-LAST:event_browseButtonActionPerformed
 
-    void load() {
-        inputBoxStandard.removeAllItems();
-        for (String standard : this.options.getCodingStandards()) {
-            inputBoxStandard.addItem(standard);
-        }
-
-        inputBoxStandard.setSelectedItem(options.getCodingStandard());
-        checkBoxShowWarnings.setSelected(options.hasShowWarnings());
-        codeSnifferTextField.setText(options.getShellScript());
+    void load()
+    {
+        messDetectorTextField.setText(options.getRulesets());
+        rulesetsTextField.setText(options.getShellScript());
     }
 
-    void store() {
+    void store()
+    {
         // Only add when a standard exists
-        options.setCodingStandard((String) inputBoxStandard.getSelectedItem());
-        options.setShowWarnings(checkBoxShowWarnings.isSelected());
-        options.setShellScript(codeSnifferTextField.getText());
-
-        // or:
-        // SomeSystemOption.getDefault().setSomeStringProperty(someTextField.getText());
-
+        options.setRulesets((String) rulesetsTextField.getText());
+        options.setShellScript((String) messDetectorTextField.getText());
     }
 
-    boolean valid() {
+    boolean valid()
+    {
         // TODO check whether form is consistent and complete
         return true;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton browseButton;
-    private javax.swing.JCheckBox checkBoxShowWarnings;
-    private javax.swing.JLabel codeSnifferLabel;
-    private javax.swing.JTextField codeSnifferTextField;
-    private javax.swing.JComboBox inputBoxStandard;
     private javax.swing.JLabel labelStandard;
+    private javax.swing.JLabel messDetectorLabel;
+    private javax.swing.JTextField messDetectorTextField;
+    private javax.swing.JTextField rulesetsTextField;
     // End of variables declaration//GEN-END:variables
 }

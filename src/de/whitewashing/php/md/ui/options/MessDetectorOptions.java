@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package de.whitewashing.php.md.ui.options;
 
 import de.whitewashing.php.md.command.MessDetector;
@@ -12,58 +11,87 @@ import java.util.List;
 import org.openide.util.NbPreferences;
 
 /**
- * Model class that holds all options for the CodeSniffer module.
+ * Model class that holds all options for the MessDetector module.
  *
  * @author manu
+ * @author daniel
+ * @todo use priority
  */
-public class MessDetectorOptions {
+public class MessDetectorOptions
+{
 
-    public static final String CODING_STANDARD = "phpcs.codingStandard";
-    public static final String SHOW_WARNINGS = "phpcs.showWarnings";
-    public static final String SHELL_SCRIPT = "phpcs.shellScript";
-    
-    public static final String DEFAULT_CODING_STANDARD = "Zend";
-    public static final boolean DEFAULT_SHOW_WARNINGS = true;
+    public static final String RULESETS = "phpmd.rulesets";
+    public static final String PRIORITY = "phpmd.priority";
+    public static final String SHELL_SCRIPT = "phpmd.shellScript";
 
-    private List<String> codingStandards;
+    public static final String DEFAULT_RULESETS = "codesize,design,naming,unusedcode";
+    public static final int    DEFAULT_PRIORITY = 3;
+    private String rulesets;
 
-    public MessDetectorOptions() {
-        this(new ArrayList<String>());
+    public MessDetectorOptions()
+    {
+        this(new String());
     }
 
-    public MessDetectorOptions(List<String> codingStandards) {
-        this.codingStandards = codingStandards;
+    public MessDetectorOptions(String rulesets)
+    {
+        if(rulesets.length() == 0) {
+            this.rulesets = DEFAULT_RULESETS;
+        } else {
+            this.rulesets = rulesets;
+        }
     }
 
-    public List<String> getCodingStandards() {
-        return this.codingStandards;
+    /**
+     * get the used rulesets
+     * @return String
+     */
+    public String getRulesets()
+    {
+        return NbPreferences.forModule(MessDetector.class)
+                .get(RULESETS, rulesets);
     }
 
-    public String getCodingStandard() {
-        return NbPreferences.forModule(MessDetector.class).get(CODING_STANDARD, DEFAULT_CODING_STANDARD);
+    public void setRulesets(String rulesets)
+    {
+        NbPreferences.forModule(MessDetector.class)
+                .put(RULESETS, rulesets);
     }
 
-    public void setCodingStandard(String codingStandard) {
-        NbPreferences.forModule(MessDetector.class).put(CODING_STANDARD, codingStandard);
+    public int getPriority()
+    {
+        return NbPreferences.forModule(MessDetector.class)
+                .getInt(PRIORITY, DEFAULT_PRIORITY);
     }
 
-    public boolean hasShowWarnings() {
-        return NbPreferences.forModule(MessDetector.class).getBoolean(SHOW_WARNINGS, DEFAULT_SHOW_WARNINGS);
+    public void setPriority(int priority)
+    {
+        NbPreferences.forModule(MessDetector.class)
+                .putInt(PRIORITY, priority);
     }
 
-    public void setShowWarnings(boolean showWarnings) {
-        NbPreferences.forModule(MessDetector.class).putBoolean(SHOW_WARNINGS, showWarnings);
+    public String getShellScript()
+    {
+        return NbPreferences.forModule(MessDetector.class)
+                .get(SHELL_SCRIPT, this.findDefaultShellScript());
     }
 
-    public String getShellScript() {
-        return NbPreferences.forModule(MessDetector.class).get(SHELL_SCRIPT, this.findDefaultShellScript());
+    /**
+     * set shell script
+     * @param shellScript
+     */
+    public void setShellScript(String shellScript)
+    {
+        NbPreferences.forModule(MessDetector.class)
+                .put(SHELL_SCRIPT, shellScript);
     }
 
-    public void setShellScript(String shellScript) {
-        NbPreferences.forModule(MessDetector.class).put(SHELL_SCRIPT, shellScript);
-    }
-
-    private String findDefaultShellScript() {
+    /**
+     * get path of shell script
+     * @return String
+     */
+    private String findDefaultShellScript()
+    {
         return new MessDetectorBinary().getPath();
     }
 }
