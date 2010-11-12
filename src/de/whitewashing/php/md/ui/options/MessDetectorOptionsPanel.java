@@ -105,7 +105,10 @@ public class MessDetectorOptionsPanel extends javax.swing.JPanel
     }// </editor-fold>//GEN-END:initComponents
 
     private void browseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseButtonActionPerformed
-        File messDetectorScript = new FileChooserBuilder(MessDetectorOptionsPanel.class.getName() + MESS_DETECTOR_LAST_FOLDER_SUFFIX).setTitle(NbBundle.getMessage(MessDetectorOptionsPanel.class, "LBL_CodeSnifferSelect")).setFilesOnly(true).showOpenDialog();
+        File messDetectorScript = new FileChooserBuilder(MessDetectorOptionsPanel.class.getName() + MESS_DETECTOR_LAST_FOLDER_SUFFIX)
+                .setTitle(NbBundle.getMessage(MessDetectorOptionsPanel.class, "LBL_MessDetectorSelect"))
+                .setFilesOnly(true)
+                .showOpenDialog();
         if (messDetectorScript != null) {
             messDetectorScript = FileUtil.normalizeFile(messDetectorScript);
             messDetectorTextField.setText(messDetectorScript.getAbsolutePath());
@@ -114,8 +117,8 @@ public class MessDetectorOptionsPanel extends javax.swing.JPanel
 
     void load()
     {
-        messDetectorTextField.setText(options.getRulesets());
-        rulesetsTextField.setText(options.getShellScript());
+        messDetectorTextField.setText(options.getShellScript());
+        rulesetsTextField.setText(options.getRulesets());
     }
 
     void store()
@@ -127,7 +130,14 @@ public class MessDetectorOptionsPanel extends javax.swing.JPanel
 
     boolean valid()
     {
-        // TODO check whether form is consistent and complete
+        String rulesets = rulesetsTextField.getText();
+        if(rulesets.length() == 0) {
+            return false;
+        }
+        String script = messDetectorTextField.getText();
+        if(script.length() == 0) {
+            return false;
+        }
         return true;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
