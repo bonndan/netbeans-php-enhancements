@@ -93,7 +93,7 @@ public final class MessDetectorAction extends CookieAction {
 
     @Override
     protected boolean asynchronous() {
-        return false;
+        return true;
     }
 
     protected JMenuItem setEnabledForExistingBinary(JMenuItem item)

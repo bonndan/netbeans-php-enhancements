@@ -7,4 +7,6 @@
       glyph="nbresloc:/de/whitewashing/php/md/resources/mdwarn.png"
       highlight="#FFFBCF"
       type="line"
+      browseable="true"
+      severity="warning"
 />

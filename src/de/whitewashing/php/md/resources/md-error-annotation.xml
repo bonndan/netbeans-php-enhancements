@@ -6,5 +6,7 @@
       visible="true"
       glyph="nbresloc:/de/whitewashing/php/md/resources/mderror.png"
       highlight="#FFCFCF"
+      browseable="true"
       type="line"
+      severity="error"
 />

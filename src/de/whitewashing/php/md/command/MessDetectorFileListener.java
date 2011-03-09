@@ -22,7 +22,13 @@ import org.openide.filesystems.FileRenameEvent;
  */
 public class MessDetectorFileListener implements FileChangeListener
 {
+    private MessDetector md;
     private MessDetectorXmlLogResult rs = null;
+
+    public MessDetectorFileListener(MessDetector md)
+    {
+        this.md = md;
+    }
 
     void setLogResult(MessDetectorXmlLogResult rs)
     {
@@ -37,11 +43,17 @@ public class MessDetectorFileListener implements FileChangeListener
         
     }
 
-    public void fileChanged(FileEvent fileEvent) {
+    /**
+     * re-scans file after changing it
+     * @param fileEvent
+     */
+    public void fileChanged(FileEvent fileEvent)
+    {
         for(MessDetectionViolation e: rs.getViolations()) {
             e.detach();
         }
         fileEvent.getFile().removeFileChangeListener(this);
+        md.execute(fileEvent.getFile(), true);
     }
 
     public void fileDeleted(FileEvent fileEvent) {

@@ -98,7 +98,7 @@ public class MessDetector
 
     private void annotateWithCodingStandardHints(FileObject fo, MessDetectorXmlLogResult rs)
     {
-        MessDetectorFileListener l = new MessDetectorFileListener();
+        MessDetectorFileListener l = new MessDetectorFileListener(this);
         l.setLogResult(rs);
         fo.addFileChangeListener(l);
 
